@@ -1,0 +1,17 @@
+sudo: required
+
+language: python
+
+python:
+  - "2.7"
+
+before_script:
+  - sudo apt-get install python-demjson
+  - easy_install demjson
+  - sudo apt-get install libxml2-utils
+  - pip install html5lib
+  - cd ../
+  - git clone -b tools/lint_support https://github.com/yunxliu/crosswalk-test-suite.git
+  - cd demo-express/
+
+script: python ../crosswalk-test-suite/tools/lint/lint.py -t demo-express -d samples/Accelerometer
